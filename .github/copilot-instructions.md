@@ -136,9 +136,10 @@ This repository contains a complete workflow for creating 3D models from images 
 
 ## Resources
 
-- [Meta's MapAnything Documentation](https://ai.meta.com/) (adjust link as needed)
+- Meta's MapAnything Documentation - *Link to be added when available; check Meta AI research publications*
 - [Python Best Practices](https://docs.python-guide.org/)
 - [3D Model Formats](https://en.wikipedia.org/wiki/List_of_file_formats#3D_graphics)
+- [3D Reconstruction Overview](https://en.wikipedia.org/wiki/3D_reconstruction)
 
 ## Notes for Copilot Agent
 
