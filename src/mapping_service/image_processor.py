@@ -3,9 +3,12 @@ Image processor for handling image uploads and preprocessing.
 """
 
 import os
+import logging
 from typing import List, Dict, Any, Optional
 from PIL import Image
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 
 class ImageProcessor:
@@ -72,7 +75,7 @@ class ImageProcessor:
                     img = img.convert("RGB")
                 return np.array(img)
         except Exception as e:
-            print(f"Error loading image {file_path}: {e}")
+            logger.error(f"Error loading image {file_path}: {e}")
             return None
 
     def preprocess_images(self, file_paths: List[str]) -> List[Dict[str, Any]]:
@@ -88,7 +91,7 @@ class ImageProcessor:
         views = []
         for file_path in file_paths:
             if not self.validate_image(file_path):
-                print(f"Skipping invalid image: {file_path}")
+                logger.warning(f"Skipping invalid image: {file_path}")
                 continue
 
             img_array = self.load_image(file_path)

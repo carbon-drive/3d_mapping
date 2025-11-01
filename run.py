@@ -19,4 +19,6 @@ if __name__ == "__main__":
     print("Starting server at http://localhost:5000")
     print("Press Ctrl+C to stop")
     print("=" * 60)
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # Debug mode should only be enabled for development
+    debug_mode = os.getenv("FLASK_DEBUG", "0") == "1"
+    app.run(host="0.0.0.0", port=5000, debug=debug_mode)

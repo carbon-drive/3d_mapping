@@ -3,8 +3,11 @@
 """
 
 import os
+import logging
 from typing import List, Dict, Any, Optional
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 
 class ModelGenerator:
@@ -41,11 +44,11 @@ class ModelGenerator:
             # self.model = MapAnything.from_pretrained(self.model_id)
             
             # Mock implementation
-            print(f"Loading model: {self.model_id}")
+            logger.info(f"Loading model: {self.model_id}")
             self.model_loaded = True
             return True
         except Exception as e:
-            print(f"Error loading model: {e}")
+            logger.error(f"Error loading model: {e}")
             return False
 
     def generate_3d_model(
@@ -66,7 +69,7 @@ class ModelGenerator:
                 return None
 
         if not views:
-            print("No valid views provided")
+            logger.warning("No valid views provided")
             return None
 
         try:
@@ -74,7 +77,7 @@ class ModelGenerator:
             # results = self.model.infer(views)
             
             # Mock implementation - simulate processing
-            print(f"Processing {len(views)} views for 3D reconstruction")
+            logger.info(f"Processing {len(views)} views for 3D reconstruction")
             
             results = {
                 "status": "success",
@@ -94,7 +97,7 @@ class ModelGenerator:
             return results
 
         except Exception as e:
-            print(f"Error generating 3D model: {e}")
+            logger.error(f"Error generating 3D model: {e}")
             return None
 
     def _generate_mock_depth_maps(self, views: List[Dict[str, Any]]) -> List[np.ndarray]:

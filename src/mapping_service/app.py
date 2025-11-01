@@ -3,10 +3,17 @@ Flask web application for 3D mapping service.
 """
 
 import os
+import logging
 from flask import Flask, request, render_template, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 from .image_processor import ImageProcessor
 from .model_generator import ModelGenerator
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
 
 def create_app(config=None):
@@ -135,4 +142,6 @@ def create_app(config=None):
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # Debug mode should only be enabled for development
+    debug_mode = os.getenv("FLASK_DEBUG", "0") == "1"
+    app.run(host="0.0.0.0", port=5000, debug=debug_mode)
