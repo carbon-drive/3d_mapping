@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Mapping Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗺️ 3D Mapping Service</h1>
+            <p>Generate 3D models from your images using AI-powered reconstruction</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <h2>Upload Images</h2>
+                <p class="help-text">Select one or more images to create a 3D model</p>
+                
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="file-input-wrapper">
+                        <input 
+                            type="file" 
+                            id="imageInput" 
+                            name="images" 
+                            accept="image/*" 
+                            multiple 
+                            required
+                        >
+                        <label for="imageInput" class="file-label">
+                            <span id="fileLabel">Choose images...</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" id="submitBtn">
+                        Generate 3D Model
+                    </button>
+                </form>
+
+                <div id="preview" class="preview-section"></div>
+            </div>
+
+            <div id="results" class="results-section" style="display: none;">
+                <h2>Results</h2>
+                <div id="resultsContent"></div>
+            </div>
+
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Processing images and generating 3D model...</p>
+            </div>
+
+            <div id="error" class="error-message" style="display: none;"></div>
+        </main>
+
+        <footer>
+            <p>Powered by Meta's MapAnything | 
+            <a href="https://github.com/carbon-drive/3d_mapping" target="_blank">View on GitHub</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
